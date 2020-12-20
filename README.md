@@ -24,7 +24,7 @@ npx hardhat unicheck <address-list>
 
 Note: The script uses Ethers' default provider, but you can specify your own in a .env file. See `.env.sample`.
 
-If the address list is just a ',', it will check all addresses in the Merkle tree.
+If the address list is just a ',' (comma) it will check all addresses in the Merkle tree.
 
 ### Technical overview
 
