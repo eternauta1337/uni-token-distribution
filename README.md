@@ -22,6 +22,8 @@ Then run the script.
 npx hardhat unicheck <address-list>
 ```
 
+Note: The script uses Ethers' default provider, but you can specify your own in a .env file. See `.env.sample`.
+
 ### Technical overview
 
 According to an arbitrary set of rules determined by Uniswap, addresses that used the protocol before the distribution date could interact with a TokenDistributor to claim UNI tokens.
