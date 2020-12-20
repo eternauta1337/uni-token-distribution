@@ -4,9 +4,9 @@ const ethers = require('ethers');
 const { cyan, gray, green } = require('chalk');
 
 function hexToNumber(hex) {
-  return ethers.utils.formatEther(
+  return parseFloat(ethers.utils.formatEther(
     ethers.BigNumber.from(hex)
-  );
+  ));
 }
 
 task('unicheck', 'Checks if an account/s can claim UNI rewards')
@@ -34,16 +34,17 @@ task('unicheck', 'Checks if an account/s can claim UNI rewards')
     console.log('\n');
 
     let toBeClaimed = hasBeenClaimed = canClaim = haveClaimed = 0;
-    for (let i = 0; i < accounts.length; i++) {
+    const num = accounts.length;
+    for (let i = 0; i < num; i++) {
       const account = ethers.utils.getAddress(accounts[i]);
-      console.log(cyan(`Checking account ${account}`));
+      console.log(cyan(`Checking account ${i} of ${num} ${account}`));
 
       const entry = data.claims[account];
       if (entry) {
-        console.log(gray('  > Account *could* claim UNI...'));
-        // console.log(entry);
-
         const amount = hexToNumber(entry.amount);
+
+        console.log(gray(`  > Account *could* claim ${amount} UNI...`));
+        // console.log(entry);
 
         console.log(gray(`  > Querying TokenDistributor.isClaimed(${entry.index})...`));
         const TokenDistributor = new ethers.Contract(
@@ -67,11 +68,9 @@ task('unicheck', 'Checks if an account/s can claim UNI rewards')
       } else {
         console.log(gray('  > Account has no UNI to claim :('));
       }
+      console.log(gray(`  > ${canClaim} accounts can claim ${toBeClaimed} UNI`));
+      console.log(gray(`  > ${haveClaimed} accounts have claimed ${hasBeenClaimed} UNI`));
     }
-
-    console.log(cyan(`Summary:`));
-    console.log(gray(`  > ${canClaim} accounts can claim ${toBeClaimed} UNI`));
-    console.log(gray(`  > ${haveClaimed} accounts have claimed ${hasBeenClaimed} UNI`));
   });
 
 module.exports = {
