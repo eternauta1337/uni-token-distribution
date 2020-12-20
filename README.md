@@ -13,7 +13,7 @@ npm install
 The script requires a data file containing the list of addresses that can claim UNI (and their Merkle proofs). This file is ~360mb, so it needs to be downloaded first. Check data.sample.json to see what it looks like.
 
 ```
-curl -X GET "https://ipfs.io/ipfs/Qmegj6pV3qvGE8XWfMPdzXCu2sUoNMGtpbL5vYuAkhnJja"
+curl -X GET "https://ipfs.io/ipfs/Qmegj6pV3qvGE8XWfMPdzXCu2sUoNMGtpbL5vYuAkhnJja" > data.json
 ```
 
 Then run the script.
