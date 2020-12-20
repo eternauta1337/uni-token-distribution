@@ -24,6 +24,8 @@ npx hardhat unicheck <address-list>
 
 Note: The script uses Ethers' default provider, but you can specify your own in a .env file. See `.env.sample`.
 
+If the address list is just a ',', it will check all addresses in the Merkle tree.
+
 ### Technical overview
 
 According to an arbitrary set of rules determined by Uniswap, addresses that used the protocol before the distribution date could interact with a TokenDistributor to claim UNI tokens.
